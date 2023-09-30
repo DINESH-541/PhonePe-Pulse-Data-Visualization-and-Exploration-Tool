@@ -1,0 +1,7 @@
+Refer link:-
+
+https://plotly.com/python/choropleth-maps/
+
+https://stackoverflow.com/questions/60910962/is-there-any-way-to-draw-india-map-in-plotly
+
+https://www.geeksforgeeks.org/python-os-listdir-method/
