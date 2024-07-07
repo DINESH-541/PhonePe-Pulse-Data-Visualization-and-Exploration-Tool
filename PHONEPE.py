@@ -13,7 +13,7 @@ st.set_page_config(page_title= "Phonepe_PulseExplorer | By DineshKumar",page_ico
     initial_sidebar_state="expanded",menu_items={'About': """# This app is created by Dinesh Kumar!"""})
 #-- Connect The MySQL DATABASE--#
 myconnection = pymysql.connect(host="127.0.0.1",user="root",passwd="*******",database="PHONE_PE")  # use your MySql password
-engine = create_engine('mysql+pymysql://root:*********@localhost/PHONE_PE') # use your MySql password
+engine = create_engine('mysql+pymysql://root:********@localhost/PHONE_PE')  # use your MySql password
 # steamlit menu bar
 selected = option_menu(None, ["HOME","TOPCHARTS","VISUALIZATION"], 
                     icons=["house","graph-up-arrow","bar-chart-line"],
@@ -55,13 +55,13 @@ if selected == "TOPCHARTS":
     colum1,colum2 = st.columns([1.5,1.5],gap='large')
     #st.image('/Users/joesnowafc/Downloads/ppey.jpeg',width=1200)
     with colum1:
-        Year = st.selectbox("**:violet[YEAR]**",('2018','2019','2020','2021','2022','2023'))
+        Year = st.selectbox("**:violet[YEAR]**",('2018','2019','2020','2021','2022','2023','2024'))
     with colum2:
         Quarter = st.selectbox("**:violet[QUARTER]**",('1','2','3','4'))
     ##--------------------------TOPCHARTS TRANSACTION type----------------------##
     if Type == "TRANSACTION":
             col1,col2,col3 = st.columns([3,3,3],gap='large')
-            if Year == "2023" and Quarter in ['3','4']:
+            if Year == "2024" and Quarter in ['2','3','4']:
                 st.markdown("#### :violet[Data not found, explore ❗️❗️❗️]")
                 st.write("#### :green[The year is ongoing 🏃‍♂️]")
             else:    
@@ -84,12 +84,12 @@ if selected == "TOPCHARTS":
     ##--------------------------TOPCHARTS USERS type----------------------##
     if Type == "USERS":
             col1,col2,col3 = st.columns([5,5,5],gap='large')
-            if Year == "2023" and Quarter in ['3','4']:
+            if Year == "2024" and Quarter in ['2','3','4']:
                 st.markdown("#### :violet[Data not found, explore ❗️❗️❗️]")
                 st.write("#### :green[The year is ongoing 🏃‍♂️]")    
             else:    
                 with col1:
-                    if Year in ["2022","2023" ]and Quarter in ['2','3','4']:
+                    if Year in ["2022","2023","2024" ]and Quarter in ['2','3','4']:
                         st.markdown("#### :violet[Data not found, explore ❗️❗️❗️]")
                     else:    
                         tm = pd.read_sql("select distinct brand,sum(user_count) as TOTAL_USER FROM agg_indu WHERE year = %s AND quarter = %s GROUP BY 1 order by 2 desc limit 10",engine,params=(Year, Quarter))
@@ -113,7 +113,7 @@ if selected == "VISUALIZATION":
     Type = st.sidebar.selectbox("**:violet[TYPES]**", ("TRANSACTION", "USERS"))
     colum1,colum2 = st.columns([1.5,1.5],gap='large')
     with colum1:
-        Year = st.selectbox("**:violet[YEAR]**",('2018','2019','2020','2021','2022','2023'))
+        Year = st.selectbox("**:violet[YEAR]**",('2018','2019','2020','2021','2022','2023','2024'))
     with colum2:
         Quarter = st.selectbox("**:violet[QUARTER]**",('1','2','3','4'))
     ##--------------------------VISUALIZATION TRANSACTION TYPE----------------------##
@@ -127,7 +127,7 @@ if selected == "VISUALIZATION":
                             "icon": {"font-size": "30px"},
                             "container" : {"max-width": "6000px"},
                             "nav-link-selected": {"background-color": "#7616D2"}})
-        if Year == "2023" and Quarter in ['3','4']:
+        if Year == "2024" and Quarter in ['2','3','4']:
                 st.markdown("#### :violet[Data not found, explore ❗️❗️❗️]")
                 st.write("#### :green[The year is ongoing 🏃‍♂️]")
         else:
@@ -180,7 +180,7 @@ if selected == "VISUALIZATION":
                             'nagaland','odisha','puducherry','punjab','rajasthan','sikkim',
                             'tamil-nadu','telangana','tripura','uttar-pradesh','uttarakhand','west-bengal'],styles={"nav-link-selected": {"background-color": "#7616D2"}})
         if selected=="AGG USERS":
-            if Year == ["2023","2022"] and Quarter in ['2','3','4']:
+            if Year == ["2022","2023","2024"] and Quarter in ['2','3','4']:
                 st.markdown("#### :violet[Data not found, explore ❗️❗️❗️]")
                 st.write("#### :green[The year is ongoing 🏃‍♂️]") 
             else:    
